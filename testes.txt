@@ -1,0 +1,2 @@
+java -jar TestFlowOne.jar
+java -jar TestFlowTwoPay.jar
