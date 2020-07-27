@@ -56,9 +56,9 @@ public class OcariotVariables extends Variables {
 		state.put(mongo_food, "?");
 		state.put(mongo_notification, "?");
 		state.put(mysql_missions, "?");
-		state.put(redis_api_gateway, "?");
+		state.put(redis_api_gateway, "1");
 		state.put(redis_ds_agent, "?");
-		state.put(api_gateway, "?");
+		state.put(api_gateway, "1");
 		state.put(account, "?");
 		state.put(iot_tracking, "?");
 		state.put(ds_agent, "?");
@@ -67,7 +67,7 @@ public class OcariotVariables extends Variables {
 		state.put(food, "?");
 		state.put(missions, "?");
 		state.put(notification, "?");
-		state.put(rabbitmq, "?");
+		state.put(rabbitmq, "1");
 	}
 	
 	private FeatureVar getService(String serviceName) {
@@ -105,7 +105,7 @@ public class OcariotVariables extends Variables {
 			/**
 			 * only makes a choice if it is not already present in the map
 			 */
-			value = SPLat.bt.choose(fvar, this) ? "1" : "0";
+			value = SPLatJS.bt.choose(fvar, this) ? "1" : "0";
 		}
 		System.out.println("\nValor da variavel " + value);
 		return value;

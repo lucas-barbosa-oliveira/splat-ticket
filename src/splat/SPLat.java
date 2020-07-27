@@ -22,6 +22,7 @@ import backtracker.Backtracker;
 import configuration.Configuration;
 import entry.CacheEntry;
 import entry.FeatureVar;
+import experiment.IResult;
 import experiment.SPLatResult;
 import experiment.TestResults;
 import sampling.Pairwise;
@@ -247,7 +248,7 @@ public class SPLat {
 	/***
 	 * Result of a test run
 	 */
-	public static class Result extends TestResult implements ITestResult {
+	public static class Result extends TestResult implements ITestResult, IResult {
 		Throwable failure;
 		long time;
 		List<ITestResult> testResults;

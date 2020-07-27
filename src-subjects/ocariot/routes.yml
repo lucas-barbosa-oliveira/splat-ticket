@@ -1,0 +1,289 @@
+microservices:
+  account:
+    resources:
+      auth:
+        - path: ^(\/v1\/auth\/{0,1})$
+          method: POST
+      users:
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/password\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/reset-password\/{0,1})$
+          method: POST
+#        - path: /v1/users/types/{user_type}/scopes
+#          method: POST
+      institutions:
+        - path: ^(\/v1\/institutions)$
+          method: POST
+        - path: ^(\/v1\/institutions)$
+          method: GET
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+      children:
+        - path: ^(\/v1\/children)$
+          method: POST
+        - path: ^(\/v1\/children)$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+      educators:
+        - path: ^(\/v1\/educators)$
+          method: POST
+        - path: ^(\/v1\/educators)$
+          method: GET
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+      educators-children-groups:
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/children\/groups\/{0,1})$
+          method: POST
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/children\/groups\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/educators\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      families-children:
+        - path: ^((\/v1\/families\/)[^\W_]{24}\/children\/groups\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/families\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: POST
+        - path: ^((\/v1\/families\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      healthprofessionals:
+        - path: ^(\/v1\/healthprofessionals)$
+          method: POST
+        - path: ^(\/v1\/healthprofessionals)$
+          method: GET
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+      healthprofessionals-children-groups:
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/children\/groups\/{0,1})$
+          method: POST
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/children\/groups\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/healthprofessionals\/)[^\W_]{24}\/children\/groups\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      applications:
+        - path: ^(\/v1\/applications)$
+          method: POST
+        - path: ^(\/v1\/applications)$
+          method: GET
+        - path: ^((\/v1\/applications\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/applications\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+  iot-tracking:
+    resources:
+      children-physicalactivities:
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/physicalactivities)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/physicalactivities)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/physicalactivities\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/physicalactivities\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      children-logs:
+        - path: ^((\/v1\/children\/)[^\W_]{24}(\/logs\/)(steps|calories|active_minutes|lightly_active_minutes|sedentary_minutes)\/{0,1})$
+          method: POST
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/logs\/date\/\d{4}-(0[1-9]|1[0-2])-\d\d\/\d{4}-(0[1-9]|1[0-2])-\d\d\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}(\/logs\/)(steps|calories|active_minutes|lightly_active_minutes|sedentary_minutes)(\/date\/\d{4}-(0[1-9]|1[0-2])-\d\d\/\d{4}-(0[1-9]|1[0-2])-\d\d)\/{0,1})$
+          method: GET
+      children-sleep:
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/sleep)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/sleep)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/sleep\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/sleep\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      children-weights:
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/weights)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/weights)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/weights\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/weights\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      children-bodyfats:
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/bodyfats)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/bodyfats)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/bodyfats\/[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/children\/)[^\W_]{24}\/bodyfats\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+      institutions-environments:
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/environments)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/environments)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/environments)\/{0,1}$
+          method: DELETE
+        - path: ^((\/v1\/institutions\/)[^\W_]{24}\/environments\/[^\W_]{24}\/{0,1})$
+          method: DELETE
+  ds-agent:
+    resources:
+      fitbit:
+        - path: ^(\/v1\/fitbit)$
+          method: GET
+      fitbit-subscriber:
+        - path: ^(\/v1\/applications\/subscriber)$
+          method: GET
+        - path: ^(\/v1\/applications\/subscriber)$
+          method: POST
+      users-fitbit-auth:
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/fitbit\/auth)\/{0,1}$
+          method: POST
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/fitbit\/auth)\/{0,1}$
+          method: GET
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/fitbit\/auth\/revoke)\/{0,1}$
+          method: POST
+      users-fitbit-sync:
+        - path: ^((\/v1\/users\/)[^\W_]{24}\/fitbit\/sync)\/{0,1}$
+          method: POST
+  quest:
+    resources:
+      q1sociodemographics:
+        - path: ^(\/v1\/q1sociodemographics\/count)$
+          method: GET
+        - path: ^((\/v1\/q1sociodemographics\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/q1sociodemographics\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/q1sociodemographics\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/q1sociodemographics\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/q1sociodemographics)$
+          method: POST
+        - path: ^(\/v1\/q1sociodemographics)$
+          method: PATCH
+        - path: ^(\/v1\/q1sociodemographics)$
+          method: GET
+      q21childshealthconditions:
+        - path: ^(\/v1\/q21childshealthconditions\/count)$
+          method: GET
+        - path: ^((\/v1\/q21childshealthconditions\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/q21childshealthconditions\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/q21childshealthconditions\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/q21childshealthconditions\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/q21childshealthconditions)$
+          method: POST
+        - path: ^(\/v1\/q21childshealthconditions)$
+          method: PATCH
+        - path: ^(\/v1\/q21childshealthconditions)$
+          method: GET
+      q501physicalactivityforchildren:
+        - path: ^(\/v1\/q501physicalactivityforchildren\/count)$
+          method: GET
+        - path: ^((\/v1\/q501physicalactivityforchildren\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/q501physicalactivityforchildren\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/q501physicalactivityforchildren\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/q501physicalactivityforchildren\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/q501physicalactivityforchildren)$
+          method: POST
+        - path: ^(\/v1\/q501physicalactivityforchildren)$
+          method: PATCH
+        - path: ^(\/v1\/q501physicalactivityforchildren)$
+          method: GET
+      q503SleepingHabits:
+        - path: ^(\/v1\/q503sleepinghabits\/count)$
+          method: GET
+        - path: ^((\/v1\/q503sleepinghabits\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/q503sleepinghabits\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/q503sleepinghabits\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/q503sleepinghabits\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/q503sleepinghabits)$
+          method: POST
+        - path: ^(\/v1\/q503sleepinghabits)$
+          method: PATCH
+        - path: ^(\/v1\/q503sleepinghabits)$
+          method: GET
+      qfoodtrackings:
+        - path: ^(\/v1\/qfoodtrackings\/count)$
+          method: GET
+        - path: ^((\/v1\/qfoodtrackings\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/qfoodtrackings\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/qfoodtrackings\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/qfoodtrackings\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/qfoodtrackings)$
+          method: POST
+        - path: ^(\/v1\/qfoodtrackings)$
+          method: PATCH
+        - path: ^(\/v1\/qfoodtrackings)$
+          method: GET
+  gamification:
+  food:
+  missions:
+    resources:
+      robot:
+        - path: ^((\/v1\/robot-result\/food-recognition\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^(\/v1\/robot-result\/food-recognition)$
+          method: POST
+        - path: ^(\/v1\/robot-result)$
+          method: POST
+        - path: ^((\/v1\/robot-result\/mission\/)[^\W_]{24}\/{0,1})$
+          method: GET
+      educator-missions:
+        - path: ^(\/v1\/educator-missions)$
+          method: POST
+        - path: ^(\/v1\/educator-missions)$
+          method: GET
+        - path: ^((\/v1\/educator-missions\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/educator-missions\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/educator-missions\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/educator-missions\/activate)$
+          method: POST
+        - path: ^(\/v1\/educator-missions\/validate)$
+          method: POST
+        - path: ^((\/v1\/educator-missions\/active\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/educator-missions\/completed\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^(\/v1\/educator-missions\/assign)$
+          method: POST
+        - path: ^((\/v1\/educator-missions\/assign\/)[^\W_]{24}\/{0,1})$
+          method: GET
+  notification:
