@@ -38,5 +38,15 @@
 	<classpathentry kind="lib" path="jars/rt.jar"/>
 	<classpathentry kind="lib" path="jars/selenium-junit4-runner-1.0.6.jar"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/testng-6.7.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/src.zip"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="/home/lucas-barbosa/Downloads/openjfx-11.0.2_linux-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.junit.runner.notification.Failure;
-
-import splat.SPLat.Result;
 import util.Operation;
 
-public class TestResults implements Serializable{
+public class TestResults implements Serializable {
 
 	String testname;
 	List<SPLatResult> results;
@@ -45,7 +42,7 @@ public class TestResults implements Serializable{
 	public long getTotal_time() {
 		return total_time;
 	}
-	
+
 	public void setTotalTime(long totalTime) {
 		this.total_time = totalTime;
 	}
@@ -69,11 +66,11 @@ public class TestResults implements Serializable{
 	public int getCtff() {
 		return ctff;
 	}
-	
+
 	/**
 	 * Calculating reachable configurations from this test result.
 	 */
-	public Set<String> calculateReachableConfs(){
+	public Set<String> calculateReachableConfs() {
 		Set<String> reachableConfs = new TreeSet<String>();
 		for (SPLatResult res : results) {
 			String conf = res.getConfiguration().toString();
@@ -85,25 +82,25 @@ public class TestResults implements Serializable{
 	public void calculateStats() {
 		boolean firstFailure = false;
 		for (SPLatResult res : results) {
-			Result r = res.getTestResult();
+			IResult r = res.getTestResult();
 			total_time += r.getExecTime();
 //			Failure f = r.getFailure();
 //			Throwable throwable = f == null ? null : f.getException();
 			Throwable throwable = r.getFailure();
-			
+
 			if (!firstFailure) {
 				ttff += r.getExecTime();
 				ctff++;
 			}
-			
+
 			if (throwable != null) {
 				Class bug = throwable.getClass();
-				if(bug.getName().contains("RuntimeException"))//"NOT SAMPLE"
+				if (bug.getName().contains("RuntimeException"))// "NOT SAMPLE"
 					continue;
 				if (!bugs.contains(bug))
 					bugs.add(bug);
 				num_failures++;
-				
+
 				firstFailure = true;
 			}
 		}
@@ -117,12 +114,8 @@ public class TestResults implements Serializable{
 		calculateStats();
 		int numConfs = results.size();
 		int numBugs = bugs.size();
-		String out = 
-				Operation.truncateDecimal((double)total_time/1000000, 2) + " & "
-				+ numConfs + " & "
-				+ num_failures + " & "
-				+ numBugs + " & "
-				+ Operation.truncateDecimal((double)ttff/1000000, 2) + " & "
+		String out = Operation.truncateDecimal((double) total_time / 1000000, 2) + " & " + numConfs + " & "
+				+ num_failures + " & " + numBugs + " & " + Operation.truncateDecimal((double) ttff / 1000000, 2) + " & "
 				+ ctff;
 		return out;
 	}
