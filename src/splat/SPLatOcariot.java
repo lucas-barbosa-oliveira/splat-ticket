@@ -20,9 +20,9 @@ public class SPLatOcariot {
 		String testProjectPath = args[0];
 
 		/***** SPLat *****/
-		Sampling.mode = Mode.SPLAT;
+		Sampling.mode = Mode.MOST_ENABLED_DISABLED;
 		args = new String[] { "--services-path", resourcesPath, "--logfile", dataPath + "ocariot.txt", "--shouldsample",
-				"false", "--samplerate", "1", "--validate", "false" };
+				"true", "--samplerate", "1", "--validate", "false" };
 
 		SPLatJS spLat = new SPLatJS(OcariotVariables.getSINGLETON());
 		spLat.run(args, new Backtracker(true, true, new TrieST<Boolean>()), pathTestCases, testProjectPath);

@@ -94,13 +94,9 @@ public class SPLatJS {
 
 			commandBr = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-			System.out.print("Executing Docker file.");
-			line = null;
-			while ((line = commandBr.readLine()) != null) {
-				System.out.print(".");
-			}
-			System.out.println();
-		} catch (IOException e) {
+			System.out.println("Executing Docker file...");
+			process.waitFor();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -127,7 +123,6 @@ public class SPLatJS {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String testCase = null;
 			while ((testCase = br.readLine()) != null) {
-				execDocker(testProjectPath, "all");
 				String testCaseName = testCase.split("-")[0];
 				String testGroup = testCase.split("-")[1].replace(" ", "|");
 				if (testGroup.indexOf("|") == 0)
@@ -136,13 +131,20 @@ public class SPLatJS {
 				if (Sampling.mode == Mode.PAIRWISE) {
 					pw = new Pairwise(vars);
 				}
-
+				System.out.println("***CONFIGURING ENVIRONMENT - STARTING ALL SERVICES FOR THE TEST CASE: " + testCaseName + "***");
+				execDocker(testProjectPath, "all");
+				
 				TestResults t_res = new TestResults(testCaseName);
 				vars.setValidate(validate);
 				printTestHeader(testCaseName);
 				bt = new Backtracker(st.pureSPLat, st.isFirstRun(), st.getGeneralTrie());
+				// Running first to discover services touched
+				
+				System.out.println("Running test case to discover the services touched...");
 				runJavaScriptTest(testGroup, testProjectPath, servicesPath);
+				int round = 0;
 				do {
+					System.out.println("\nROUND NUMBER " + round);
 					vars.restore();
 					boolean sample = true;
 					if (SPLatJS.shouldSample && Sampling.mode == Mode.RANDOM) {
@@ -154,8 +156,8 @@ public class SPLatJS {
 					if (sample) {
 						Result r = runJavaScriptTest(testGroup, testProjectPath, "");
 						vars.notifyServicesLoaded(servicesPath);
+						System.out.println("Services to next round: " + getNotifiedService());
 						execDocker(testProjectPath, getNotifiedService());
-						System.out.println("getService: " + getNotifiedService());
 						bt.setFirstRun(false);
 
 						String exception = "";
@@ -179,13 +181,13 @@ public class SPLatJS {
 										SPLatResult splatResult = new SPLatResult(new Configuration(vars.toString()),
 												r);
 										t_res.add(splatResult);
-										System.err.println(vars.toString());
+										// System.err.println(vars.toString());
 									}
 								} else {
 									print(r);
 									SPLatResult splatResult = new SPLatResult(new Configuration(vars.toString()), r);
 									t_res.add(splatResult);
-									System.err.println(vars.toString());
+									// System.err.println(vars.toString());
 								}
 							}
 						}
@@ -196,6 +198,7 @@ public class SPLatJS {
 					traces.add(vars.toString());
 					// look for another choice
 					bt.backtrack();
+					round++;
 				} while (bt.hasMore());
 //						if(t_res.getNum_confs() != 0)
 				this.stats.add(t_res);

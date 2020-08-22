@@ -107,7 +107,7 @@ public class OcariotVariables extends Variables {
 			 */
 			value = SPLatJS.bt.choose(fvar, this) ? "1" : "0";
 		}
-		System.out.println("\nValor da variavel " + value);
+		// System.out.println("\nValor da variavel " + value);
 		return value;
 
 	}

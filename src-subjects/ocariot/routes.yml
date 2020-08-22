@@ -251,7 +251,43 @@ microservices:
         - path: ^(\/v1\/qfoodtrackings)$
           method: GET
   gamification:
+    resources:
+      gamification-profile:
+        - path: ^(\/v1\/gamificationprofiles\/count)$
+          method: GET
+        - path: ^((\/v1\/gamificationprofiles\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/gamificationprofiles\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/gamificationprofiles\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/gamificationprofiles\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/gamificationprofiles)$
+          method: POST
+        - path: ^(\/v1\/gamificationprofiles)$
+          method: PATCH
+        - path: ^(\/v1\/gamificationprofiles)$
+          method: GET
   food:
+    resources:
+      food-habits:
+        - path: ^(\/v1\/foodqs\/count)$
+          method: GET
+        - path: ^((\/v1\/foodqs\/)[^\W_]{24}\/{0,1})$
+          method: PUT
+        - path: ^((\/v1\/foodqs\/)[^\W_]{24}\/{0,1})$
+          method: PATCH
+        - path: ^((\/v1\/foodqs\/)[^\W_]{24}\/{0,1})$
+          method: GET
+        - path: ^((\/v1\/foodqs\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
+        - path: ^(\/v1\/foodqs)$
+          method: POST
+        - path: ^(\/v1\/foodqs)$
+          method: PATCH
+        - path: ^(\/v1\/foodqs)$
+          method: GET
   missions:
     resources:
       robot:
@@ -287,3 +323,13 @@ microservices:
         - path: ^((\/v1\/educator-missions\/assign\/)[^\W_]{24}\/{0,1})$
           method: GET
   notification:
+    resources:
+      notifications-user:
+        - path: ^((\/v1\/notifications\/user\/)[^\W_]{24}\/{0,1})$
+          method: POST
+      notifications-pendingnotification:
+        - path: ^((\/v1\/notifications\/pendingnotification\/)[^\W_]{24}\/{0,1})$
+          method: GET
+      notifications-deletetoken:
+        - path: ^((\/v1\/notifications\/deletetoken\/)[^\W_]{24}\/{0,1})$
+          method: DELETE
