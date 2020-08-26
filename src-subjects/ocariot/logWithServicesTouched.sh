@@ -12,7 +12,7 @@ CODE=$?
 OUT=$(echo "${OUT}" | grep -E "^ ")
 FAIL_NUMBER_LINE=$(echo "${OUT}" | grep -nE "failing" | awk '{print $1}' | sed 's@:@@g')
 if [ "${FAIL_NUMBER_LINE}" ]; then
-	echo "${OUT}" | tail +$(((1 + ${FAIL_NUMBER_LINE})))
+	echo "${OUT}" | tail -n +$(((1 + ${FAIL_NUMBER_LINE})))
 fi
 
 if [ -z "$3" ]; then

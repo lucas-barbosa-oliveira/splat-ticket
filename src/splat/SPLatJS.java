@@ -23,7 +23,7 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 
-import backtracker.Backtracker;
+import backtracker.BacktrackerJS;
 import configuration.Configuration;
 import entry.CacheEntry;
 import entry.FeatureVar;
@@ -38,7 +38,7 @@ import util.Config.ExecutionMode;
 
 public class SPLatJS {
 
-	public static Backtracker bt = new Backtracker(true, true /* SPLar */, null); // Stack
+	public static BacktrackerJS bt = new BacktrackerJS(true, true /* SPLar */, null); // Stack
 	public static PrintStream out;
 	public static String servicesPath;
 	public static CommandLine cmd;
@@ -54,7 +54,7 @@ public class SPLatJS {
 		this.vars = vars;
 		this.confDefault = vars.toString();
 		this.stats = new Stats();
-	}
+	}	
 
 	public static Pairwise pw = null;
 
@@ -77,7 +77,8 @@ public class SPLatJS {
 				+ "/docker-compose.yml " + services;
 		final String execDockerFile = "docker-compose -f " + testProjectPath + "/docker-generated.yml --env-file "
 				+ testProjectPath + "/.env up -d --remove-orphans";
-
+		final String checkService = "cd $(pwd)/src-subjects/ocariot && ./check_services.sh " + services;
+		
 		try {
 			Process process = new ProcessBuilder(new String[] { "bash", "-c", generateDockerFile })
 					.redirectErrorStream(true).start();
@@ -96,6 +97,12 @@ public class SPLatJS {
 
 			System.out.println("Executing Docker file...");
 			process.waitFor();
+			process = new ProcessBuilder(new String[] { "bash", "-c", checkService }).redirectErrorStream(true)
+					.start();
+
+			commandBr = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			System.out.println("Checking services...");
+			process.waitFor();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -108,8 +115,8 @@ public class SPLatJS {
 	 * @param bt
 	 * @throws Exception
 	 */
-	// public List<String> run(String[] args, Backtracker st) throws Exception {
-	public Stats run(String[] args, Backtracker st, String testsPath, String testProjectPath) throws Exception {
+	// public List<String> run(String[] args, BacktrackerJS st) throws Exception {
+	public Stats run(String[] args, BacktrackerJS st, String testsPath, String testProjectPath) throws Exception {
 		List<String> traces = new ArrayList<String>();
 		Config.mode = ExecutionMode.SPLAT;
 		try {
@@ -137,7 +144,7 @@ public class SPLatJS {
 				TestResults t_res = new TestResults(testCaseName);
 				vars.setValidate(validate);
 				printTestHeader(testCaseName);
-				bt = new Backtracker(st.pureSPLat, st.isFirstRun(), st.getGeneralTrie());
+				bt = new BacktrackerJS(st.pureSPLat, st.isFirstRun(), st.getGeneralTrie());
 				// Running first to discover services touched
 				
 				System.out.println("Running test case to discover the services touched...");
@@ -154,10 +161,16 @@ public class SPLatJS {
 
 					// execute or not
 					if (sample) {
-						Result r = runJavaScriptTest(testGroup, testProjectPath, "");
-						vars.notifyServicesLoaded(servicesPath);
-						System.out.println("Services to next round: " + getNotifiedService());
+						try {
+							vars.notifyServicesLoaded(servicesPath);
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println("Generation of execution configuration failed");
+							continue; 
+						}
+						System.out.println("Services to round: " + getNotifiedService());
 						execDocker(testProjectPath, getNotifiedService());
+						Result r = runJavaScriptTest(testGroup, testProjectPath, "");
 						bt.setFirstRun(false);
 
 						String exception = "";

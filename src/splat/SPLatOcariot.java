@@ -1,6 +1,7 @@
 package splat;
 
 import backtracker.Backtracker;
+import backtracker.BacktrackerJS;
 import sampling.Sampling;
 import sampling.Sampling.Mode;
 import trie.TrieST;
@@ -20,12 +21,12 @@ public class SPLatOcariot {
 		String testProjectPath = args[0];
 
 		/***** SPLat *****/
-		Sampling.mode = Mode.MOST_ENABLED_DISABLED;
+		Sampling.mode = Mode.SPLAT;
 		args = new String[] { "--services-path", resourcesPath, "--logfile", dataPath + "ocariot.txt", "--shouldsample",
-				"true", "--samplerate", "1", "--validate", "false" };
+				"false", "--samplerate", "1", "--validate", "false" };
 
 		SPLatJS spLat = new SPLatJS(OcariotVariables.getSINGLETON());
-		spLat.run(args, new Backtracker(true, true, new TrieST<Boolean>()), pathTestCases, testProjectPath);
+		spLat.run(args, new BacktrackerJS(true, true, new TrieST<Boolean>()), pathTestCases, testProjectPath);
 	}
 
 }
