@@ -131,7 +131,7 @@ public class SPLatJS {
 			String testCase = null;
 			while ((testCase = br.readLine()) != null) {
 				String testCaseName = testCase.split("-")[0];
-				String testGroup = testCase.split("-")[1].replace(" ", "|");
+				String testGroup = testCase.split(" - ")[1].replace(" ", "|");
 				if (testGroup.indexOf("|") == 0)
 					testGroup = testGroup.substring(1);
 				// run splat for each test
@@ -302,7 +302,7 @@ public class SPLatJS {
 		JavaScriptTestResult testResult = new JavaScriptTestResult();
 		final String runTest = "./logWithServicesTouched.sh \"" + testName + "\" " + testProjectPath + " "
 				+ servicesPath;
-		final String command = "cd $(pwd)/src-subjects/ocariot" + " && " + runTest;
+		final String command = "cd $(pwd)/src-subjects/ocariot && " + runTest;
 		long tf = 0;
 
 		try {

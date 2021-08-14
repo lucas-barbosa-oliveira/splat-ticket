@@ -6,7 +6,7 @@ MICROSERVICES=$(cat ${YML_FILE_BASE} \
 	| grep -vE '^ |mongo|redis|mysql' \
 	| sed 's@:.*@@g')
 TIME=$(date +'%Y-%m-%dT%H:%M:%S')
-OUT=$(npm run test:single --prefix $2 -- --grep $1 test/**/**/*.spec.ts 2>&1)
+OUT=$(npm run test:single --prefix $2 -- --fgrep=" $1" test/**/**/*.spec.ts 2>&1)
 CODE=$?
 
 OUT=$(echo "${OUT}" | grep -E "^ ")

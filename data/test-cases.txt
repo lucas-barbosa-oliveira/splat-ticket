@@ -1,18 +1,23 @@
-test.case.0 - notifications.deletetoken.delete_id001 children.get_all001
-test.case.1 - notifications.user.post_id001 children.get_id001
-test.case.2 - educator-missions.get009 children.patch003
-test.case.3 - educator-missions.get_id009 children.post001
-test.case.4 - educator-missions.post003 q1sociodemographics.get_all001
-test.case.5 - food-recognition.get007 q1sociodemographics.get_id001
-test.case.6 - food-recognition.post003 q1sociodemographics.patch001
-test.case.7 - robot-result.mission.get007 q1sociodemographics.post001
-test.case.8 - robot-result.post003 q21childshealthconditions.post001
-test.case.9 - bodyfats.delete001 qfoodtracking.get_all001
-test.case.10 - bodyfats.get_all001 qfoodtracking.get_id001
-test.case.11 - bodyfats.get_id001 qfoodtracking.patch001
-test.case.12 - bodyfats.post001 qfoodtracking.post001
-test.case.13 - gamificationprofiles.get001 children.logs.post001
-test.case.14 - gamificationprofiles.post001 institutions.environments.delete_all002
-test.case.15 - foodqs.get_id001 institutions.environments.delete_id001
-test.case.16 - foodqs.patch001 institutions.environments.get_all009
-test.case.17 - foodqs.post001 institutions.environments.post001
+test.case.0 - q1sociodemographics.get_all001
+test.case.1 - q1sociodemographics.get_id001
+test.case.2 - q1sociodemographics.patch001
+test.case.3 - q1sociodemographics.post001
+test.case.4 - notifications.deletetoken.delete_id001
+test.case.5 - notifications.user.post_id001
+test.case.6 - educator-missions.get001
+test.case.7 - educator-missions.get_id001
+test.case.8 - educator-missions.post001
+test.case.9 - food-recognition.get001
+test.case.10 - bodyfats.delete001
+test.case.11 - bodyfats.get_all001
+test.case.12 - bodyfats.get_id001
+test.case.13 - bodyfats.post001
+test.case.14 - gamificationprofiles.get001
+test.case.15 - gamificationprofiles.post001
+test.case.16 - foodqs.get_id001
+test.case.17 - foodqs.patch001
+test.case.18 - foodqs.post001
+test.case.19 - users.fitbit.auth.get_id001
+test.case.20 - users.fitbit.auth.post001
+test.case.21 - users.fitbit.auth.revoke.post001
+test.case.22 - users.fitbit.sync.post001
